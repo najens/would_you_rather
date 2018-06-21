@@ -4,6 +4,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap'
 import User from './User'
 import { Redirect } from 'react-router-dom'
 
+// Component that renders the Leaderboard
 class Leaderboard extends Component {
   render () {
     const { sortedUsers, authedUser } = this.props
@@ -26,21 +27,35 @@ class Leaderboard extends Component {
   }
 }
 
-function mapStateToProps ({ users, authedUser }) {
 
+/*
+ * Uses redux state and creates props
+ * that are passed into component
+ *
+ * @param {Array} users
+ * @param {string} authedUser
+ * @return {Object} props
+ *    sortedUsers {Array} - All users sorted by ranking
+ *    authedUser {string} - Current user id
+ */
+function mapStateToProps ({ users, authedUser }) {
+  // sort user ids by rank
   const userIds = Object.keys(users)
     .sort((a,b) => (
-        Object.keys(users[b].answers).length + users[b].questions.length) - (Object.keys(users[a].answers).length + users[a].questions.length)
-    )
+        Object.keys(users[b].answers).length + users[b].questions.length) - (
+          Object.keys(users[a].answers).length + users[a].questions.length))
   let sortedUsers = []
-
+  // Assign ranking to each user and add to sorted user array
   userIds.map((userId, index) => {
     let user = users[userId]
     if (index > 0) {
       let prevUserId = userIds[index - 1]
       let prevUser = users[prevUserId]
-      if (Object.keys(prevUser.answers).length + prevUser.questions.length === Object.keys(user.answers).length + user.questions.length) {
-        user.rank = prevUser.rank
+      if (Object.keys(prevUser.answers).length + (
+        prevUser.questions.length) === Object.keys(
+          user.answers
+        ).length + user.questions.length) {
+          user.rank = prevUser.rank
       } else {
         user.rank = index + 1
       }
@@ -50,8 +65,6 @@ function mapStateToProps ({ users, authedUser }) {
     sortedUsers.push(user)
     return user
   })
-
-  console.log(userIds)
 
   return {
     sortedUsers,

@@ -57,7 +57,11 @@ class ImageInput extends React.Component {
 
     if (file && file.type.match(/^image\//)) {
       readFileAsDataURL(file).then(originalURL => {
-        resizeImage(originalURL, this.canvas, this.props.maxHeight).then(url => {
+        resizeImage(
+          originalURL,
+          this.canvas,
+          this.props.maxHeight
+        ).then(url => {
           this.setState({ value: url })
           onAvatarChange(url)
         })
@@ -100,7 +104,7 @@ class ImageInput extends React.Component {
         <input type="hidden" name={name} value={value} />
         <input
           ref={node => this.fileInput = node}
-          type="file"
+          type='file'
           onChange={this.handleFileChange}
           style={{
             position: 'absolute',

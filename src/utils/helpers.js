@@ -25,17 +25,17 @@ export function formatQuestion (question, author, authedUser) {
 }
 
 export function formatUser (user, rank) {
-    const { answers, avatarURL, id, name, questions } = user
-    const numAnswered = Object.keys(answers).length
-    const numQuestions = questions.length
-    console.log(`${name} answered ${numAnswered} questions and asked ${numQuestions} questions.`)
+  const { answers, avatarURL, id, name, questions } = user
+  const numAnswered = Object.keys(answers).length
+  const numQuestions = questions.length
+  console.log(`${name} answered ${numAnswered} questions and asked ${numQuestions} questions.`)
 
-    return {
-        id,
-        rank,
-        name,
-        avatar: avatarURL,
-        numAnswered,
-        numQuestions,
-    }
+  return {
+    id,
+    rank,
+    name,
+    avatar: avatarURL,
+    numAnswered,
+    numQuestions,
+  }
 }

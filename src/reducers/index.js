@@ -4,9 +4,11 @@ import users from './users'
 import questions from './questions'
 import { loadingBarReducer } from 'react-redux-loading'
 
+// Combin all reducers that
+// will be passed to the store
 export default combineReducers({
-    authedUser,
-    users,
-    questions,
-    loadingBar: loadingBarReducer,
+  authedUser,
+  users,
+  questions,
+  loadingBar: loadingBarReducer,
 })

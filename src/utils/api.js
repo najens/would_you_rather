@@ -17,7 +17,7 @@ export function getInitialData () {
 }
 
 export function saveUser (user) {
-    return _saveUser(user)
+  return _saveUser(user)
 }
 
 export function saveQuestion (question) {

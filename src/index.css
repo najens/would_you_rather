@@ -5,16 +5,16 @@ body {
 }
 
 a:hover {
-    text-decoration: none;
-    color: #bbb;
+  text-decoration: none;
+  color: #bbb;
 }
 
 a {
-    color: #fff;
+  color: #fff;
 }
 
 .nav-header {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .avatar {
@@ -36,40 +36,40 @@ a {
 }
 
 .tabs .nav-link.active {
-    color: #eee;
-    background: #455a64;
+  color: #eee;
+  background: #455a64;
 }
 
 .question,
 .question:hover,
 .question:focus {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .question a {
-    color: #000;
+  color: #000;
 }
 
 .question a:hover {
-    color: #01579b;
+  color: #01579b;
 }
 
 .option a div {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 5px;
-    font-size: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 1.3rem;
 }
 
 .option a:hover div {
-    cursor: pointer;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .option-answer {
-    border: 1px solid #007bff;
-    background: #007bff;
-    color: #eee;
+  border: 1px solid #007bff;
+  background: #007bff;
+  color: #eee;
 }
 
 .create-contact-avatar-input {
@@ -85,5 +85,5 @@ a {
 }
 
 .w-40 {
-    width: 40%;
+  width: 40%;
 }

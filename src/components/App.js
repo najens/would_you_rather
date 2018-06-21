@@ -11,10 +11,14 @@ import Leaderboard from './Leaderboard'
 import Signup from './Signup'
 import Login from './Login'
 
+// Main Entry component of App that displays Navbar,
+// and handles renders components at assigned routes
 class App extends Component {
+  // When component mounts, get initial data
   componentDidMount () {
     this.props.dispatch(handleInitialData())
   }
+
   render() {
     return (
       <Router>
@@ -40,6 +44,15 @@ class App extends Component {
   }
 }
 
+
+/*
+ * Uses redux store and creates props
+ * that are passed into component
+ *
+ * @param {string} authedUser
+ * @return {Object} props
+ *    loading {boolean} - true when loading initial data
+ */
 function mapStateToProps ({ authedUser }) {
   return {
     loading: authedUser === null

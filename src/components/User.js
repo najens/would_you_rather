@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatUser } from '../utils/helpers'
 
+// Component that renders a user on leaderboard page
 class User extends Component {
   render () {
     const { user } = this.props
 
+    // If user doesn't exist display message
     if (user === null) {
       return (
         <p>This user doesn't exist</p>
@@ -16,12 +18,14 @@ class User extends Component {
       rank, name, avatar, numAnswered, numQuestions
     } = user
 
+    // Calcualate user's total score
     const total = numAnswered + numQuestions
-    console.log(total)
 
     return (
       <div className='question'>
-        <div className='d-flex flex-row justify-content-between align-items-center'>
+        <div className='d-flex flex-row justify-content-between
+          align-items-center'
+        >
           <div className='d-flex flex-row w-25 align-items-center'>
             <div>{rank}</div>
             <img src={avatar} alt={`Avatar of ${name}`} className='avatar' />
@@ -45,14 +49,25 @@ class User extends Component {
   }
 }
 
-function mapStateToProps ({ users }, { id, rank }) {
-    const user = users[id]
 
-    return {
-        user: user
-            ? formatUser(user, rank)
-            : null
-    }
+/*
+ * Uses redux store and creates props
+ * that are passed into component
+ *
+ * @param {Array} users
+ * @param {string) id - props
+ * @param {integer} rank - props
+ * @return {Object} props
+ *    user {Object} - formatted user
+ */
+function mapStateToProps ({ users }, { id, rank }) {
+  const user = users[id]
+
+  return {
+    user: user
+      ? formatUser(user, rank)
+      : null
+  }
 }
 
 export default connect(mapStateToProps)(User)
