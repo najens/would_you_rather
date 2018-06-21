@@ -16,8 +16,8 @@ class QuestionPage extends Component {
     const { dispatch, question, authedUser } = this.props
     // Alert user if they already answered the question
     if (question.hasAnswered === true) {
-      return alert('You already voted on this question. \
-      Please vote on another question.')
+      return alert('You already voted on this question. ' +
+      'Please vote on another question.')
     }
     dispatch(handleAnswerQuestion({
       qid: question.id,
@@ -37,8 +37,8 @@ class QuestionPage extends Component {
     const { dispatch, question, authedUser } = this.props
     // Alert user if they already answered the question
     if (question.hasAnswered === true) {
-      return alert('You already voted on this question. \
-      Please vote on another question.')
+      return alert('You already voted on this question. ' +
+      'Please vote on another question.')
     }
     dispatch(handleAnswerQuestion({
       qid: question.id,
