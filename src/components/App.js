@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
+import Navigation from './Navigation'
 import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
+import Signup from './Signup'
+import Login from './Login'
 
 class App extends Component {
   componentDidMount () {
@@ -16,8 +19,9 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          <Navigation />
           <LoadingBar />
-          <div className='container'>
+          <div>
               {this.props.loading === true
                 ? null
                 : <div>
@@ -25,6 +29,8 @@ class App extends Component {
                     <Route path='/question/:id' component={QuestionPage} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={Leaderboard} />
+                    <Route path='/signup' component={Signup} />
+                    <Route path='/login' component={Login} />
                   </div>
               }
           </div>

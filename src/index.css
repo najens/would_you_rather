@@ -3,3 +3,87 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+a:hover {
+    text-decoration: none;
+    color: #bbb;
+}
+
+a {
+    color: #fff;
+}
+
+.nav-header {
+    font-size: 1.2rem;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.avatar-sm {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.tabs li a {
+  color: #000;
+}
+
+.tabs .nav-link.active {
+    color: #eee;
+    background: #455a64;
+}
+
+.question,
+.question:hover,
+.question:focus {
+    text-decoration: none;
+}
+
+.question a {
+    color: #000;
+}
+
+.question a:hover {
+    color: #01579b;
+}
+
+.option a div {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1.3rem;
+}
+
+.option a:hover div {
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.option-answer {
+    border: 1px solid #007bff;
+    background: #007bff;
+    color: #eee;
+}
+
+.create-contact-avatar-input {
+  min-width: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  background-image: url('./icons/person.svg');
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.w-40 {
+    width: 40%;
+}

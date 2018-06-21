@@ -35,7 +35,7 @@ export function receiveQuestions (questions) {
     }
 }
 
-function answerQuestion ({ qid, authedUser, answer }) {
+function answerQuestion ({ authedUser, qid, answer }) {
     return {
         type: ANSWER_QUESTION,
         qid,
@@ -44,7 +44,7 @@ function answerQuestion ({ qid, authedUser, answer }) {
     }
 }
 
-function handleAnswerQuestion (info) {
+export function handleAnswerQuestion (info) {
     return (dispatch) => {
         dispatch(answerQuestion(info))
 

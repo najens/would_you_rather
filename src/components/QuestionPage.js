@@ -1,13 +1,121 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { formatDate, formatQuestion } from '../utils/helpers'
+import { handleAnswerQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class QuestionPage extends Component {
+  handleOptionOne = (e) => {
+      e.preventDefault()
+
+      const { dispatch, question, authedUser } = this.props
+      if (question.hasAnswered === true) {
+          return alert('You already voted on this question. Please vote on another question.')
+      }
+      dispatch(handleAnswerQuestion({
+          qid: question.id,
+          answer: 'optionOne',
+          authedUser
+      }))
+  }
+  handleOptionTwo = (e) => {
+      e.preventDefault()
+
+      const { dispatch, question, authedUser } = this.props
+      if (question.hasAnswered === true) {
+          return alert('You already voted on this question. Please vote on another question.')
+      }
+      dispatch(handleAnswerQuestion({
+          qid: question.id,
+          answer: 'optionTwo',
+          authedUser
+      }))
+  }
   render () {
+    const { question, authedUser } = this.props
+    console.log('QUESTION: ', question)
+
+    if (authedUser === '') {
+      return <Redirect to='/login' />
+    }
+
+    if (question === null) {
+      return (
+        <p>This question doesn't exist</p>
+      )
+    }
+
+    const {
+      name, avatar, timestamp, optionOneText, optionOneVotes, optionTwoText, optionTwoVotes, hasAnswered, answer
+    } = question
+
+    const total = optionOneVotes + optionTwoVotes
+    let optionOnePercent
+    let optionTwoPercent
+    if (total !== 0) {
+        optionOnePercent = Math.round(optionOneVotes * 100 / total)
+        optionTwoPercent = Math.round(optionTwoVotes * 100 / total)
+    } else {
+        optionOnePercent = 0
+        optionTwoPercent = 0
+    }
+
     return (
-      <div>
-        QuestionPage
+      <div className='container'>
+        <div className='card mt-3 p-2'>
+          <div className='d-flex flex-row align-items-center'>
+            <img
+              src={avatar}
+              alt={`Avatar of ${name}`}
+              className='avatar'
+            />
+            <span>{name}</span>
+          </div>
+          <div>{formatDate(timestamp)}</div>
+          <div className='text-center mt-4 mb-4'>
+            <h1>Would you rather...</h1>
+            <div className='d-flex flex-row justify-content-around align-items-center mt-4'>
+              <div className='w-40 option'>
+                <a onClick={this.handleOptionOne}>
+                  <div className={hasAnswered && answer === 'optionOne' ? 'option-answer' : null}>{optionOneText}</div>
+                </a>
+              </div>
+              <div className='w-40 option'>
+                <a onClick={this.handleOptionTwo}>
+                  <div className={hasAnswered && answer === 'optionTwo' ? 'option-answer' : null}>{optionTwoText}</div>
+                </a>
+              </div>
+            </div>
+            {hasAnswered && (
+              <div className='d-flex flex-row justify-content-around align-items-center mt-4'>
+                <div className='w-40'>
+                  <span className='pr-4'>{optionOneVotes !== 0 && `${optionOneVotes} votes`}</span>
+                  <span>{optionOnePercent !== 0 && `${optionOnePercent}%`}</span>
+                </div>
+                <div className='w-40'>
+                  <span className='pr-4'>{optionTwoVotes !== 0 && `${optionTwoVotes} votes`}</span>
+                  <span>{optionTwoPercent !== 0 && `${optionTwoPercent}%`}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default QuestionPage
+function mapStateToProps ({ authedUser, users, questions }, props) {
+    const { id } = props.match.params
+    const question = questions[id]
+
+    return {
+        id,
+        authedUser,
+        question: question
+            ? formatQuestion(question, users[question.author], authedUser)
+            : null
+    }
+}
+
+export default connect(mapStateToProps)(QuestionPage)
