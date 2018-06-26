@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatDate, formatQuestion } from '../utils/helpers'
+import { formatDate, formatQuestion, calculatePercent } from '../utils/helpers'
 import { handleAnswerQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
 
@@ -69,17 +69,10 @@ class QuestionPage extends Component {
       optionTwoText, optionTwoVotes, hasAnswered, answer
     } = question
 
-    // Calculate percentages to render
-    const total = optionOneVotes + optionTwoVotes
-    let optionOnePercent
-    let optionTwoPercent
-    if (total !== 0) {
-        optionOnePercent = Math.round(optionOneVotes * 100 / total)
-        optionTwoPercent = Math.round(optionTwoVotes * 100 / total)
-    } else {
-        optionOnePercent = 0
-        optionTwoPercent = 0
-    }
+    const percentages = calculatePercent(optionOneVotes, optionTwoVotes)
+    const optionOnePercent = percentages.optionOnePercent
+    const optionTwoPercent = percentages.optionTwoPercent
+
 
     return (
       <div className='container'>

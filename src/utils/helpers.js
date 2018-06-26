@@ -39,3 +39,21 @@ export function formatUser (user, rank) {
     numQuestions,
   }
 }
+
+export function calculatePercent (optionOneVotes, optionTwoVotes) {
+  // Calculate percentages to render
+  const total = optionOneVotes + optionTwoVotes
+  let optionOnePercent
+  let optionTwoPercent
+  if (total !== 0) {
+      optionOnePercent = Math.round(optionOneVotes * 100 / total)
+      optionTwoPercent = Math.round(optionTwoVotes * 100 / total)
+  } else {
+      optionOnePercent = 0
+      optionTwoPercent = 0
+  }
+  return ({
+    optionOnePercent,
+    optionTwoPercent
+  })
+}
