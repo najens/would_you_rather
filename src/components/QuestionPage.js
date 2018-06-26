@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { formatDate, formatQuestion, calculatePercent } from '../utils/helpers'
 import { handleAnswerQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
+import NotFound from './NotFound'
 
 class QuestionPage extends Component {
 
@@ -51,17 +52,17 @@ class QuestionPage extends Component {
   render () {
     const { question, authedUser } = this.props
 
-    // If the user isn't logged in, redirect to login page
-    if (authedUser === '') {
-      return <Redirect to='/login' />
-    }
-
     // If user goes to a route with no question,
     // return question doesn't exist message
     if (question === null) {
       return (
-        <p>This question doesn't exist</p>
+        <NotFound />
       )
+    }
+
+    // If the user isn't logged in, redirect to login page
+    if (authedUser === '') {
+      return <Redirect to='/login' />
     }
 
     const {

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import Signup from './Signup'
 import Login from './Login'
+import NotFound from './NotFound'
 
 // Main Entry component of App that displays Navbar,
 // and handles renders components at assigned routes
@@ -28,14 +29,15 @@ class App extends Component {
           <div>
               {this.props.loading === true
                 ? null
-                : <div>
+                : <Switch>
                     <Route path='/' exact component={Dashboard} />
                     <Route path='/question/:id' component={QuestionPage} />
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' component={Leaderboard} />
                     <Route path='/signup' component={Signup} />
                     <Route path='/login' component={Login} />
-                  </div>
+                    <Route path='*' component={NotFound} />
+                  </Switch>
               }
           </div>
         </Fragment>
