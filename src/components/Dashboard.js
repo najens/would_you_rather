@@ -21,9 +21,9 @@ class Dashboard extends Component {
     const { questionType } = this.state
 
     questionType !== 'unanswered'
-    && this.setState(() => ({
+    && this.setState({
       questionType: 'unanswered'
-    }))
+    })
   }
 
 
@@ -37,9 +37,9 @@ class Dashboard extends Component {
     const { questionType } = this.state
 
     questionType !== 'answered'
-    && this.setState(() => ({
+    && this.setState({
       questionType: 'answered'
-    }))
+    })
   }
 
 

@@ -22,9 +22,9 @@ class NewQuestion extends Component {
   handleOptionOneChange = (e) => {
     const optionOneText = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       optionOneText
-    }))
+    })
   }
 
 
@@ -37,9 +37,9 @@ class NewQuestion extends Component {
   handleOptionTwoChange = (e) => {
     const optionTwoText = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       optionTwoText
-    }))
+    })
   }
 
 
@@ -58,11 +58,11 @@ class NewQuestion extends Component {
 
     dispatch(handdleAddQuestion(optionOneText, optionTwoText))
 
-    this.setState(() => ({
+    this.setState({
       optionOneText: '',
       optionTwoText: '',
       toHome: true,
-    }))
+    })
   }
 
 

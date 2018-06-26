@@ -21,9 +21,9 @@ class SignIn extends Component {
   handleHandleChange = (e) => {
     const id = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       id,
-    }))
+    })
   }
 
 
@@ -46,15 +46,15 @@ class SignIn extends Component {
 
     if (isValidUser.length !== 0) {
         dispatch(setAuthedUser(id))
-        this.setState(() => ({
+        this.setState({
           id: '',
           toHome: true,
-        }))
+        })
     } else {
         alert('Not a valid user id. Please try again.')
-        this.setState(() => ({
+        this.setState({
           id: '',
-        }))
+        })
     }
   }
 

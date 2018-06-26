@@ -23,9 +23,9 @@ class Signup extends Component {
   handleNameChange = (e) => {
     const name = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       name
-    }))
+    })
   }
 
 
@@ -38,9 +38,9 @@ class Signup extends Component {
   handleHandleChange = (e) => {
     const id = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       id
-    }))
+    })
   }
 
 
@@ -51,9 +51,9 @@ class Signup extends Component {
    * @return {Object} state - avatar
    */
   handleAvatarChange = (url) => {
-    this.setState(() => ({
+    this.setState({
       avatar: url,
-    }))
+    })
   }
 
 
@@ -84,11 +84,11 @@ class Signup extends Component {
         avatar
       }))
 
-      this.setState(() => ({
+      this.setState({
         name: '',
         id: '',
         toHome: true,
-      }))
+      })
     }
     // Otherwise, reset form and alert and
     // alert user that the handle already exists
@@ -101,7 +101,7 @@ class Signup extends Component {
     }
   }
 
-  
+
   render () {
     const { name, id, avatar, toHome } = this.state
 
