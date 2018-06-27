@@ -17,7 +17,8 @@ import NotFound from './NotFound'
 class App extends Component {
   // When component mounts, get initial data
   componentDidMount () {
-    this.props.dispatch(handleInitialData())
+    const { handleInitialData } = this.props
+    handleInitialData()
   }
 
   render() {
@@ -61,4 +62,7 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(
+  mapStateToProps,
+  { handleInitialData }
+)(App)

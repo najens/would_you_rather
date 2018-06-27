@@ -1,10 +1,6 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
-
-// ACTION TYPES
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const ANSWER_QUESTION = 'ANSWER_QUESTION'
-export const ADD_QUESTION = 'ADD_QUESTION'
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from './actionTypes'
 
 // ACTIONS
 

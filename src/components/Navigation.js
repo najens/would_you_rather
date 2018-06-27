@@ -12,8 +12,8 @@ class Navigation extends Component {
    * and dispatches removeAuthedUser action
    */
   handleLogout = () => {
-    const { dispatch, authedUser } = this.props
-    dispatch(removeAuthedUser(authedUser))
+    const { authedUser, removeAuthedUser } = this.props
+    removeAuthedUser(authedUser)
   }
 
 
@@ -113,4 +113,7 @@ function mapStateToProps ({ authedUser, users }) {
   }
 }
 
-export default connect(mapStateToProps)(Navigation)
+export default connect(
+  mapStateToProps,
+  { removeAuthedUser }
+)(Navigation)

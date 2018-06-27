@@ -1,4 +1,4 @@
-import { SET_AUTHED_USER, REMOVE_AUTHED_USER } from '../actions/authedUser'
+import { SET_AUTHED_USER, REMOVE_AUTHED_USER } from '../actions/actionTypes'
 
 /**
  * Updates authedUser state in store each

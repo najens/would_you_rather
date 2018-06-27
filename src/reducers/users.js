@@ -1,5 +1,6 @@
-import { RECEIVE_USERS, ADD_USER } from '../actions/users'
-import { ANSWER_QUESTION, ADD_QUESTION } from '../actions/questions'
+import {
+  RECEIVE_USERS, ADD_USER, ANSWER_QUESTION, ADD_QUESTION
+} from '../actions/actionTypes'
 
 /**
  * Updates users state in store each
@@ -10,20 +11,19 @@ import { ANSWER_QUESTION, ADD_QUESTION } from '../actions/questions'
  * @return {Object} state - new users
  */
 export default function users (state = {}, action) {
-  switch(action.type) {
+  const { users, user, authedUser, qid, answer, type, question } = action
+  switch(type) {
     case RECEIVE_USERS :
       return {
         ...state,
-        ...action.users
+        ...users
       }
     case ADD_USER :
-      const { user } = action
       return {
         ...state,
         [user.id]: user,
       }
     case ANSWER_QUESTION :
-      const { authedUser, qid, answer } = action
       return {
         ...state,
         [authedUser]: {
@@ -35,13 +35,11 @@ export default function users (state = {}, action) {
         }
       }
     case ADD_QUESTION :
-      const { question } = action
-      const { author, id } = question
       return {
         ...state,
-        [author]: {
-          ...state[author],
-          questions: state[author].questions.concat([id])
+        [question.author]: {
+          ...state[question.author],
+          questions: state[question.author].questions.concat([question.id])
         }
       }
     default :

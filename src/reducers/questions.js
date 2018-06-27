@@ -1,5 +1,5 @@
 import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION
-} from '../actions/questions'
+} from '../actions/actionTypes'
 
 /**
  * Updates questions state in store each
@@ -10,14 +10,14 @@ import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION
  * @return {Object} state - new questions
  */
 export default function questions (state = {}, action) {
-  switch(action.type) {
+  const { questions, question, qid, answer, authedUser, type } = action
+  switch(type) {
     case RECEIVE_QUESTIONS :
       return {
         ...state,
-        ...action.questions
+        ...questions
       }
     case ANSWER_QUESTION :
-      const { qid, answer, authedUser } = action
       return {
         ...state,
         [qid]: {
@@ -31,7 +31,7 @@ export default function questions (state = {}, action) {
     case ADD_QUESTION :
       return {
         ...state,
-        [action.question.id]: action.question,
+        [question.id]: question,
       }
     default :
       return state

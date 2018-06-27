@@ -38,14 +38,14 @@ class SignIn extends Component {
     e.preventDefault()
 
     const { id } = this.state
-    const { dispatch, userIds } = this.props
+    const { userIds, setAuthedUser } = this.props
 
     const isValidUser = userIds.filter((uid) => (
       uid === id
     ))
 
     if (isValidUser.length !== 0) {
-        dispatch(setAuthedUser(id))
+        setAuthedUser(id)
         this.setState({
           id: '',
           toHome: true,
@@ -98,4 +98,7 @@ function mapStateToProps ({ users }) {
   }
 }
 
-export default connect(mapStateToProps)(SignIn)
+export default connect(
+  mapStateToProps,
+  { setAuthedUser }
+)(SignIn)

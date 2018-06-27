@@ -1,30 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { ListGroup, ListGroupItem } from 'reactstrap'
 import User from './User'
 import { Redirect } from 'react-router-dom'
 
 // Component that renders the Leaderboard
-class Leaderboard extends Component {
-  render () {
-    const { sortedUsers, authedUser } = this.props
+const Leaderboard = ({ sortedUsers, authedUser }) => {
 
-    if (authedUser === '') {
-      return <Redirect to='/login' />
-    }
-
-    return (
-      <div className='container'>
-        <ListGroup className='mt-3'>
-            {sortedUsers.map((user, index) => (
-                <ListGroupItem key={user.id}>
-                    <User id={user.id} rank={user.rank}/>
-                </ListGroupItem>
-            ))}
-        </ListGroup>
-      </div>
-    )
+  if (authedUser === '') {
+    return <Redirect to='/login' />
   }
+
+  return (
+    <div className='container'>
+      <ListGroup className='mt-3'>
+          {sortedUsers.map((user, index) => (
+              <ListGroupItem key={user.id}>
+                  <User id={user.id} rank={user.rank}/>
+              </ListGroupItem>
+          ))}
+      </ListGroup>
+    </div>
+  )
 }
 
 
@@ -44,7 +41,7 @@ function mapStateToProps ({ users, authedUser }) {
     .sort((a,b) => (
         Object.keys(users[b].answers).length + users[b].questions.length) - (
           Object.keys(users[a].answers).length + users[a].questions.length))
-  let sortedUsers = []
+  const sortedUsers = []
   // Assign ranking to each user and add to sorted user array
   userIds.map((userId, index) => {
     let user = users[userId]

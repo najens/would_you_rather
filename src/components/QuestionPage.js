@@ -14,17 +14,17 @@ class QuestionPage extends Component {
   handleOptionOne = (e) => {
     e.preventDefault()
 
-    const { dispatch, question, authedUser } = this.props
+    const { question, authedUser, handleAnswerQuestion } = this.props
     // Alert user if they already answered the question
     if (question.hasAnswered === true) {
       return alert('You already voted on this question. ' +
       'Please vote on another question.')
     }
-    dispatch(handleAnswerQuestion({
+    handleAnswerQuestion({
       qid: question.id,
       answer: 'optionOne',
       authedUser
-    }))
+    })
   }
 
 
@@ -35,17 +35,17 @@ class QuestionPage extends Component {
   handleOptionTwo = (e) => {
     e.preventDefault()
 
-    const { dispatch, question, authedUser } = this.props
+    const { question, authedUser, handleAnswerQuestion } = this.props
     // Alert user if they already answered the question
     if (question.hasAnswered === true) {
       return alert('You already voted on this question. ' +
       'Please vote on another question.')
     }
-    dispatch(handleAnswerQuestion({
+    handleAnswerQuestion({
       qid: question.id,
       answer: 'optionTwo',
       authedUser
-    }))
+    })
   }
 
 
@@ -167,4 +167,7 @@ function mapStateToProps ({ authedUser, users, questions }, props) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionPage)
+export default connect(
+  mapStateToProps,
+  {handleAnswerQuestion: handleAnswerQuestion}
+)(QuestionPage)

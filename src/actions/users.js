@@ -1,9 +1,6 @@
 import { saveUser } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
-
-// ACTION TYPES
-export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const ADD_USER = 'ADD_USER'
+import { RECEIVE_USERS, ADD_USER } from './actionTypes'
 
 // ACTIONS
 

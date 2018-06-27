@@ -68,7 +68,7 @@ class Signup extends Component {
     e.preventDefault()
 
     const { name, id, avatar } = this.state
-    const { dispatch, userIds } = this.props
+    const { dispatch, userIds, handleAddUser } = this.props
 
     // If the user doesn't already exist,
     // dispatch handleAddUser action, update state
@@ -78,11 +78,11 @@ class Signup extends Component {
     ))
 
     if (isValidUser.length === 0) {
-      dispatch(handleAddUser({
+      handleAddUser({
         name,
         id,
         avatar
-      }))
+      })
 
       this.setState({
         name: '',
@@ -163,4 +163,7 @@ function mapStateToProps ({ users }) {
   }
 }
 
-export default connect(mapStateToProps)(Signup)
+export default connect(
+  mapStateToProps,
+  { handleAddUser }
+)(Signup)

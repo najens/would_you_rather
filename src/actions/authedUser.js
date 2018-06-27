@@ -1,6 +1,4 @@
-// ACTION TYPES
-export const SET_AUTHED_USER = 'SET_AUTHED_USER'
-export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
+import { SET_AUTHED_USER, REMOVE_AUTHED_USER } from './actionTypes'
 
 // ACTIONS
 

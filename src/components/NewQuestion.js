@@ -4,13 +4,15 @@ import { handdleAddQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
+const defaultState = {
+  optionOneText: '',
+  optionTwoText: '',
+  toHome: false,
+}
+
 // Component that enables users to create new questions
 class NewQuestion extends Component {
-  state = {
-    optionOneText: '',
-    optionTwoText: '',
-    toHome: false,
-  }
+  state = defaultState
 
 
   /*
@@ -54,13 +56,12 @@ class NewQuestion extends Component {
     e.preventDefault()
 
     const { optionOneText, optionTwoText } = this.state
-    const { dispatch } = this.props
+    const { handdleAddQuestion } = this.props
 
-    dispatch(handdleAddQuestion(optionOneText, optionTwoText))
+    handdleAddQuestion(optionOneText, optionTwoText)
 
     this.setState({
-      optionOneText: '',
-      optionTwoText: '',
+      ...defaultState,
       toHome: true,
     })
   }
@@ -127,4 +128,7 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(
+  mapStateToProps,
+  { handdleAddQuestion }
+)(NewQuestion)
