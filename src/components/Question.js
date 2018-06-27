@@ -4,35 +4,32 @@ import { formatDate, formatQuestion } from '../utils/helpers'
 import { Link, withRouter } from 'react-router-dom'
 
 // Component that renders a Question
-class Question extends Component {
-  render () {
-    const { question } = this.props
+const Question = ({ question }) => {
 
-    // If user goes to a route with no question,
-    // return question doesn't exist message
-    if (question === null) {
-      return (
-        <p>This question doesn't exist</p>
-      )
-    }
-
-    const {
-      id, timestamp, optionOneText, optionTwoText
-    } = question
-
+  // If user goes to a route with no question,
+  // return question doesn't exist message
+  if (question === null) {
     return (
-      <Link to={`/question/${id}`} className='text-center'>
-        <h2>Would you rather...</h2>
-        <div>{formatDate(timestamp)}</div>
-        <div className='d-flex flex-row justify-content-around
-          align-items-center'
-        >
-          <h3 className='w-40 pt-3 pb-3 text-center'>{optionOneText}</h3>
-          <h3 className='w-40 pt-3 pb-3 text-center'>{optionTwoText}</h3>
-        </div>
-      </Link>
+      <p>This question doesn't exist</p>
     )
   }
+
+  const {
+    id, timestamp, optionOneText, optionTwoText
+  } = question
+
+  return (
+    <Link to={`/question/${id}`} className='text-center'>
+      <h2>Would you rather...</h2>
+      <div>{formatDate(timestamp)}</div>
+      <div className='d-flex flex-row justify-content-around
+        align-items-center'
+      >
+        <h3 className='w-40 pt-3 pb-3 text-center'>{optionOneText}</h3>
+        <h3 className='w-40 pt-3 pb-3 text-center'>{optionTwoText}</h3>
+      </div>
+    </Link>
+  )
 }
 
 

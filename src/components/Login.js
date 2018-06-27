@@ -4,12 +4,14 @@ import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
+const defaultState = {
+  id: '',
+  toHome: false,
+}
+
 // Component that enables users log in to app
 class SignIn extends Component {
-  state = {
-    id: '',
-    toHome: false,
-  }
+  state = defaultState
 
 
   /*
@@ -47,7 +49,7 @@ class SignIn extends Component {
     if (isValidUser.length !== 0) {
         setAuthedUser(id)
         this.setState({
-          id: '',
+          ...defaultState,
           toHome: true,
         })
     } else {

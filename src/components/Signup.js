@@ -5,13 +5,15 @@ import { Redirect } from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import ImageInput from './ImageInput';
 
+const defaultState = {
+  name: '',
+  id: '',
+  avatar: '',
+  toHome: false,
+}
+
 class Signup extends Component {
-  state = {
-    name: '',
-    id: '',
-    avatar: '',
-    toHome: false,
-  }
+  state = defaultState
 
 
   /*
@@ -85,8 +87,7 @@ class Signup extends Component {
       })
 
       this.setState({
-        name: '',
-        id: '',
+        ...defaultState,
         toHome: true,
       })
     }
