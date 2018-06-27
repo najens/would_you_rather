@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { removeAuthedUser } from '../actions/authedUser'
 import { Navbar, Nav, NavItem } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
+import { FaHome } from 'react-icons/lib/fa'
 
 // Component that renders Navbar
 const Navigation = ({ authedUser, user, removeAuthedUser }) => {
@@ -20,8 +21,16 @@ const Navigation = ({ authedUser, user, removeAuthedUser }) => {
     return (
       <div>
         <Navbar color='dark' dark expand='md'>
-          <NavLink to='/' exact activeClassName='active'
-            className='nav-header'>Would You Rather</NavLink>
+          <span className='d-flex align-items-center'>
+            <NavLink
+              to='/' exact
+              activeClassName='active'
+              className='nav-header'
+            >
+              <FaHome className='home' />
+            </NavLink>
+            <h5 className='title'>Would You Rather</h5>
+          </span>
           <Nav className="ml-auto" navbar>
             <NavItem className='pr-3'>
               <NavLink to='/signup' exact activeClassName='active'>
