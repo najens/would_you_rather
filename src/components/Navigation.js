@@ -5,7 +5,7 @@ import { Navbar, Nav, NavItem } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 
 // Component that renders Navbar
-const Navigation = ({ authedUser, user, removeAuthedUser }) {
+const Navigation = ({ authedUser, user, removeAuthedUser }) => {
 
   /*
    * Handles Logout Click Event
